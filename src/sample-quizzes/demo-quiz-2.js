@@ -1,6 +1,6 @@
 module.exports = {
     "id": "demo-quiz-2",
-    "name": "Demo Quiz #2",
+    "name": "Demo Quiz #2 @6se",
     "questions": [
         {
             "question": "Which of these is the correct spelling?",
