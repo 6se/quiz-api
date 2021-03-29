@@ -78,6 +78,18 @@ describe('quiz.nextStageAsync()', function () {
             await expect(quiz.nextStageAsync('1234')).to.eventually.be.rejectedWith('Not enough players yet');
             expect(saveInstance.notCalled).to.be.true;
         });
+        
+        it('should reject request if only 1 player yet', async function () {
+            instanceBefore.players = [{ name: 'Player 1'}]; // Only 1 player
+            await expect(quiz.nextStageAsync('1234')).to.eventually.be.rejectedWith('Not enough players yet');
+            expect(saveInstance.notCalled).to.be.true;
+        });
+        
+        it('should allow request if 2 or more players', async function () {
+            instanceBefore.players = [{ name: 'Player 1'}, { name: 'Player 2'}]; // >= 2 players
+            await expect(quiz.nextStageAsync('1234')).to.eventually.be.equal(false);
+            expect(saveInstance.notCalled).to.be.false;
+        });
     });
 
     describe('when showing question', function() {
